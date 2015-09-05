@@ -39,14 +39,14 @@ function linkedListGenerator() {
     var newNode = createNode(value);
 
 
-    if (newLinkedList.getTail() === null) {
+
+    if (tail === null) {
       head = newNode;
 
     } else {
-      console.log(_getTail());
 
 
-      newLinkedList.getTail().next = newNode;
+      tail.next = newNode;
 
     }
     tail = newNode;
@@ -83,24 +83,74 @@ function linkedListGenerator() {
   function _get(n) {
     var poop = head;
     if (n < length) {
-    for (var i = 0; i < n; i++) {
-      poop = poop.next;
-    }
-    return poop;
+      for (var i = 0; i < n; i++) {
+        poop = poop.next;
+      }
+      return poop;
     } else {
       return false;
     }
   }
 
+  // function _remove(n) {
+  //   var curr = _get(n);
+  //   var prev = _get(n -1);
+  //   if (n < 0 || n >= length) {
+  //     return false;
+  //   } else if (n === 0) {
+  //     head = null;
+  //     head.next = null;
+
+
+  //   } else {
+  //     if (n === length-1) {
+  //       prev.next = null;
+  //     } else if (curr === head){
+  //       head = head.next;
+  //     } else {
+  //       prev.next = curr.next;
+  //     }
+  //   }
+  //   length--;
+  // }
+
+
   function _remove(n) {
-    var prevCrap = _get(n-1);
-    var currentCrap = _get(n);
-    if (currentCrap === head) {  //if node to remove is the head
-      head = currentCrap.next;   //next node is reassigned as head
+    var curr = _get(n);
+    var prev = _get(n -1);
+    if (n < 0 || n >= length) {
+      return false;
+    } else if (length === 1) {
+      head = null;
+      head.next = null;
+    } else if (length === 2) {
+      if (n === 0) {
+        head = head.next;
+        tail = null;
+      } else {
+        head = head.next;
+        tail = null;
+      }
+
+    } else if (length > 2) {
+      if (n === 0 ) {
+        head = head.next;
+      } else if (n === length-1) {
+        prev.next = null;
+        tail = prev;
+      } else {
+        prev.next = curr.next;
+      }
+          length--;
     }
 
-
   }
+
+
+
+
+
+
   function _insert(value, n) {
 
   }

@@ -36,6 +36,7 @@ function linkedListGenerator() {
   }
 
   function _add(value) {
+
     var newNode = createNode(value);
 
 
@@ -117,7 +118,7 @@ function linkedListGenerator() {
 
   function _remove(n) {
     var curr = _get(n);
-    var prev = _get(n -1);
+    var prev = _get(n - 1);
     if (n < 0 || n >= length) {
       return false;
     } else if (length === 1) {
@@ -127,15 +128,12 @@ function linkedListGenerator() {
       if (n === 0) {
         head = head.next;
         tail = null;
-      } else {
-        head = head.next;
-        tail = null;
       }
 
     } else if (length > 2) {
       if (n === 0 ) {
         head = head.next;
-      } else if (n === length-1) {
+      } else if (n === length - 1) {
         prev.next = null;
         tail = prev;
       } else {
@@ -152,8 +150,50 @@ function linkedListGenerator() {
 
 
   function _insert(value, n) {
+    var current = _get(n);
+    var prev = _get(n - 1);
+    var crapCrap = _get(n + 1);
+    var newNode = createNode(value);
+    if (n >= length - 1 || n < 0) {
+      return false;
+    } else if (n === 0) {
+      newNode.next = current;
+      head = newNode;
+    } else if (n <= length - 1) {
+      prev.next = newNode;
+      newNode.next = current;
+
+      // } else if (n === length - 1) {
+      //   prev.next = newNode;
+      //   newNode.next = tail;
+    // } else if (n === length - 1) {
+    //   prev.next = newNode;
+    //   newNode.next = tail;
+    }
+    length++;
+
+    // if (n === length-1) {
+    //   return false;
+    // } else if (n === 0) {
+
+    //   newNode = head;
+    //   current = current.next;
+    //   newNode.next = current;
+
+    //   // current = current.next;
+    //   // newNode = current.next;
+
+    // } else {
+    //   prev.next = newNode;
+    //   newNode.next = current;
+    // }
+
 
   }
 
   return newLinkedList;
 }
+var urlLinks = linkedListGenerator();
+
+urlLinks.add("www.facebook.com");
+console.log(urlLinks.insert("www.yahoo.com", 1));
